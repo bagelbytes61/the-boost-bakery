@@ -1,0 +1,91 @@
+.contact-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 16px 0;
+  animation: fadeIn 0.4s ease-out;
+}
+
+/* Page Header */
+.page-header {
+  margin-bottom: 40px;
+  border-left: 4px solid var(--accent-red);
+  padding-left: 20px;
+}
+
+.page-header h2 {
+  font-size: 32px;
+  color: #fff;
+  margin-top: 8px;
+  margin-bottom: 12px;
+}
+
+.subtitle {
+  color: var(--text-secondary);
+  font-size: 16px;
+  max-width: 800px;
+}
+
+/* Grid Layout */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  align-items: start;
+}
+
+.contact-card {
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.contact-icon-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.contact-symbol {
+  font-size: 24px;
+  color: var(--text-primary);
+}
+
+.contact-card h4 {
+  font-size: 16px;
+  color: #fff;
+}
+
+.contact-desc {
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--text-secondary);
+}
+
+.contact-action-row {
+  margin-top: 12px;
+}
+
+.contact-btn {
+  width: 100%;
+  padding: 14px;
+  font-size: 11px;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .contact-card {
+    padding: 24px;
+  }
+}

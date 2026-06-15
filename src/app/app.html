@@ -1,0 +1,65 @@
+<main>
+  <header class="brand-name">
+    <div class="header-logo">
+      <!-- Left-hand side Hamburger Menu Button -->
+      <button class="hamburger" (click)="toggleSidebarMenu()" aria-label="Toggle Navigation Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      
+      <h1 class="brand-title" routerLink="/" style="cursor: pointer;">The Boost Bakery</h1>
+    </div>
+    
+    <!-- Right-hand side Social Media Links & Cart -->
+    <div class="header-socials">
+      <!-- TikTok Standard Vector -->
+      <a href="https://www.tiktok.com/bagelbytes61" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="TikTok" title="TikTok">
+        <svg viewBox="0 0 448 512" class="social-icon">
+          <path d="M448,209.91a210.06,210.06,0,0,1-122.77-39.25V349.38A162.55,162.55,0,1,1,185,188.31V278.2a74.62,74.62,0,1,0,52.23,71.18V0l88,0a121.18,121.18,0,0,0,1.86,22.17h0A122.18,122.18,0,0,0,381,102.39a121.43,121.43,0,0,0,67,20.14Z" fill="currentColor"/>
+        </svg>
+      </a>
+      
+      <!-- YouTube Standard Vector -->
+      <a href="https://www.youtube.com/bagelbytes61" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="YouTube" title="YouTube">
+        <svg viewBox="0 0 576 512" class="social-icon">
+          <path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z" fill="currentColor"/>
+        </svg>
+      </a>
+
+      <!-- Discord Standard Vector -->
+      <a href="https://discord.gg/nFRhEG5Ewx" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Discord" title="Discord">
+        <svg viewBox="0 0 640 512" class="social-icon">
+          <path d="M524.531 69.836a1.5 1.5 0 0 0-.764-.7A485.065 485.065 0 0 0 404.081 32.03a1.816 1.816 0 0 0-1.923.91 337.461 337.461 0 0 0-14.9 30.6a447.848 447.848 0 0 0-134.426 0 309.541 309.541 0 0 0-15.009-30.6 1.811 1.816 0 0 0-1.924-.91 483.684 483.684 0 0 0-119.688 37.107 1.712 1.712 0 0 0-.788.676C39.068 183.651 18.186 294.69 28.43 404.354a2.016 2.016 0 0 0 .765 1.375c32.65 23.978 95.621 38.645 152.601 38.645a1.845 1.845 0 0 0 1.942-1.258 360.702 360.702 0 0 0 11.533-23.472 1.803 1.803 0 0 0-.985-2.529c-16.143-6.141-31.543-13.682-46.126-22.391a1.819 1.819 0 0 1-.184-2.902c3.111-2.316 6.222-4.73 9.133-7.185a1.805 1.805 0 0 1 1.892-.251c114.79 52.417 238.411 52.417 351.05 0a1.805 1.805 0 0 1 1.892.251c2.911 2.455 6.022 4.869 9.133 7.185a1.819 1.819 0 0 1-.184 2.902c-14.583 8.709-30.012 16.25-46.126 22.391a1.803 1.803 0 0 0-.985 2.529 375.072 375.072 0 0 0 11.533 23.472 1.845 1.845 0 0 0 1.942 1.258c57.06 0 120.031-14.667 152.601-38.645a2.016 2.016 0 0 0 .765-1.375C623.181 278.431 601.768 167.651 524.531 69.836zM222.491 337.58c-34.61 0-62.885-31.653-62.885-70.528c0-38.875 27.8-70.528 62.885-70.528c35.084 0 63.359 31.653 62.885 70.528c0 38.875-27.8 70.528-62.885 70.528zm194.512 0c-34.61 0-62.885-31.653-62.885-70.528c0-38.875 27.8-70.528 62.885-70.528c35.084 0 63.359 31.653 62.885 70.528c0 38.875-27.8 70.528-62.885 70.528z" fill="currentColor"/>
+        </svg>
+      </a>
+
+      <!-- Shopping Cart Icon Toggle -->
+      <button class="social-link btn-cart-toggle" (click)="cartService.toggleCart()" aria-label="Open Cart" title="Shopping Cart">
+        <svg viewBox="0 0 24 24" class="social-icon">
+          <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z" fill="currentColor"/>
+        </svg>
+        <span class="cart-badge" *ngIf="cartService.itemCount() > 0">{{ cartService.itemCount() }}</span>
+      </button>
+    </div>
+  </header>
+  
+  <section class="content">
+    <div class="layout">
+      <!-- Restored Sliding Sidebar -->
+      <app-sidebar [menuOpen]="sidebarMenuOpen" (menuOpenUpdate)="sidebarMenuOpen = $event"></app-sidebar>
+
+      <main class="main-content" [class.shift]="sidebarMenuOpen">
+        <router-outlet></router-outlet>
+      </main>
+    </div>
+  </section>
+
+  <!-- Global Footer -->
+  <footer class="app-footer" [class.shift]="sidebarMenuOpen">
+    <p>&copy; 2026 The Boost Bakery. All rights reserved.</p>
+  </footer>
+
+  <!-- Global Sliding Cart Drawer Component -->
+  <app-cart></app-cart>
+</main>

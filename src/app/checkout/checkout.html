@@ -1,0 +1,116 @@
+<div class="checkout-page-container">
+  
+  <!-- Page Header -->
+  <div class="page-header" *ngIf="!paymentSuccess()">
+    <h2>Secure Checkout</h2>
+    <p class="subtitle">Complete your transaction via PayPal below.</p>
+  </div>
+
+  <!-- VIEW 1: SUCCESS STATE (ORDER CONFIRMED) -->
+  <div class="order-success-view card" *ngIf="paymentSuccess() && transactionDetails()">
+    <div class="success-header">
+      <span class="success-check-badge">✓</span>
+      <h2 class="success-title">Payment Approved</h2>
+      <p class="subtitle">Your transaction has been securely captured via PayPal. Your calibration ticket is now active.</p>
+    </div>
+
+    <div class="success-details">
+      <div class="success-item-row">
+        <strong>Transaction ID:</strong>
+        <code>{{ transactionDetails().id }}</code>
+      </div>
+      <div class="success-item-row">
+        <strong>Payer:</strong>
+        <span>{{ transactionDetails().payerName }}</span>
+      </div>
+      <div class="success-item-row">
+        <strong>Email:</strong>
+        <span>{{ transactionDetails().email }}</span>
+      </div>
+      <div class="success-item-row">
+        <strong>Captured:</strong>
+        <span class="price-val">${{ transactionDetails().amount }} USD</span>
+      </div>
+      <div class="success-item-row">
+        <strong>Status:</strong>
+        <span class="badge badge-gold">{{ transactionDetails().status }}</span>
+      </div>
+    </div>
+
+    <div class="receipt-hint-card card">
+      <h4>What Happens Next?</h4>
+      <p>We are registering your VIN inside our calibration directory. A baseline map with exact flashing instructions has been automatically compiled and dispatched to your email (<code>{{ transactionDetails().email }}</code>).</p>
+    </div>
+
+    <div class="success-actions">
+      <a routerLink="/" class="btn btn-primary">Return to Home</a>
+    </div>
+  </div>
+
+  <!-- VIEW 2: NORMAL CHECKOUT STATE -->
+  <div class="checkout-grid" *ngIf="!paymentSuccess()">
+    
+    <!-- LEFT COLUMN: ORDER SUMMARY -->
+    <div class="summary-column">
+      <h3 class="section-title">Order Summary</h3>
+      
+      <div class="card summary-card">
+        <ul class="summary-items-list">
+          <li class="summary-item-row" *ngFor="let item of cartService.items()">
+            <div class="summary-item-header">
+              <span class="summary-item-name">{{ item.name }}</span>
+              <span class="summary-item-price">${{ item.price }}</span>
+            </div>
+            
+            <div class="summary-item-specs">
+              <div class="spec-row">
+                <span>Model Year:</span>
+                <span>{{ item.specs.modelYear }} Subaru WRX</span>
+              </div>
+              <div class="spec-row">
+                <span>Odometer:</span>
+                <span>{{ item.specs.mileage | number }} Miles</span>
+              </div>
+              <div class="spec-row">
+                <span>VIN Lock:</span>
+                <code>{{ item.specs.vin | uppercase }}</code>
+              </div>
+              <div class="spec-row" *ngIf="item.specs.mods">
+                <span>Modifications:</span>
+                <span class="text-right">{{ item.specs.mods }}</span>
+              </div>
+              <div class="spec-row" *ngIf="item.specs.notes">
+                <span>Customer Notes:</span>
+                <span class="text-right">{{ item.specs.notes }}</span>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- RIGHT COLUMN: SECURE PAYMENT -->
+    <div class="payment-column">
+      <h3 class="section-title">Billing & Payment</h3>
+      
+      <div class="card payment-card">
+        <div class="total-block">
+          <span class="total-label">Subtotal:</span>
+          <span class="total-val">${{ cartService.cartTotal() | number:'1.2-2' }}</span>
+        </div>
+
+        <div class="security-disclosure">
+          <span class="lock-icon" aria-hidden="true">🔒</span>
+          <div>
+            <h5>Encrypted Gateway</h5>
+            <p>Your payment data is fully tokenized and authorized securely inside PayPal's hosted environment. We never store or handle card details.</p>
+          </div>
+        </div>
+
+        <!-- Official Live PayPal script Buttons container -->
+        <div #paypalContainer class="paypal-render-container"></div>
+      </div>
+    </div>
+
+  </div>
+</div>

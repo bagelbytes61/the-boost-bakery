@@ -1,0 +1,58 @@
+<!-- Mobile Dark Overlay background -->
+<div class="cart-overlay" *ngIf="cartService.isCartOpen()" (click)="closeCartDrawer()"></div>
+
+<!-- Sliding Cart Drawer panel -->
+<div class="cart-drawer" [class.open]="cartService.isCartOpen()">
+  <div class="cart-header">
+    <h3>Shopping Cart</h3>
+    <button class="btn-close-cart" (click)="closeCartDrawer()" aria-label="Close Shopping Cart">✕</button>
+  </div>
+
+  <div class="cart-scroll-content">
+    
+    <!-- Empty Cart state -->
+    <div class="empty-cart-state" *ngIf="cartService.itemCount() === 0">
+      <span class="empty-icon" aria-hidden="true">🛒</span>
+      <p>Your shopping cart is empty.</p>
+      <button class="btn btn-secondary btn-checkout" (click)="closeCartDrawer()">Continue Shopping</button>
+    </div>
+
+    <!-- Active Cart Items -->
+    <div class="cart-active-state" *ngIf="cartService.itemCount() > 0">
+      <ul class="cart-items-list">
+        <li class="cart-item-row" *ngFor="let item of cartService.items(); let i = index">
+          <div class="cart-item-header">
+            <span class="cart-item-name">{{ item.name }}</span>
+            <button class="btn-remove-item" (click)="cartService.removeFromCart(i)" aria-label="Remove item">✕</button>
+          </div>
+          
+          <!-- Detailed Custom Specifications specs -->
+          <div class="cart-item-specs">
+            <div class="spec-bullet"><strong>Odometer:</strong> {{ item.specs.mileage | number }} Miles</div>
+            <div class="spec-bullet"><strong>Platform:</strong> {{ item.specs.modelYear }} Subaru WRX</div>
+            <div class="spec-bullet"><strong>VIN:</strong> <code>{{ item.specs.vin | uppercase }}</code></div>
+            <div class="spec-bullet" *ngIf="item.specs.mods"><strong>Mods:</strong> {{ item.specs.mods }}</div>
+            <div class="spec-bullet" *ngIf="item.specs.notes"><strong>Notes:</strong> {{ item.specs.notes }}</div>
+          </div>
+
+          <div class="cart-item-price-row">
+            <span class="cart-item-price">${{ item.price }}</span>
+          </div>
+        </li>
+      </ul>
+
+      <!-- Checkout Payment Trigger Block -->
+      <div class="drawer-checkout-footer">
+        <div class="cart-total-summary">
+          <span class="total-label">Subtotal:</span>
+          <span class="total-price-val">${{ cartService.cartTotal() | number:'1.2-2' }}</span>
+        </div>
+
+        <button class="btn btn-primary btn-checkout" (click)="proceedToCheckout()">
+          Proceed to Checkout
+        </button>
+      </div>
+    </div>
+
+  </div>
+</div>

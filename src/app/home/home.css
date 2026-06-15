@@ -1,0 +1,83 @@
+.video-background-container {
+  position: relative;
+  margin: -48px; /* Cancels parent padding to make the video full-bleed */
+  z-index: 1;
+  overflow: visible;
+  background-color: var(--bg-primary);
+}
+
+.background-video {
+  width: 100%;
+  height: auto; /* Preserves native 16:9 aspect ratio and lets the page expand vertically */
+  display: block;
+}
+
+/* Semi-transparent dark overlay mask that scales with the scrolled video height */
+.video-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(rgba(10, 10, 10, 0.75), rgba(10, 10, 10, 0.9));
+}
+
+/* Sticky Bottom Center Floating CTA Button */
+.btn-get-tuned {
+  position: fixed;
+  bottom: 64px; /* Fixed anchor towards the bottom of the viewport */
+  left: 50%;
+  transform: translateX(-50%); /* Clean horizontal centering */
+  z-index: 10; /* Elevated above background video layers */
+  padding: 18px 48px;
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: 3px;
+  background-color: var(--accent-red);
+  color: #ffffff;
+  border: 1px solid var(--accent-red);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 0 15px rgba(211, 47, 47, 0.4);
+  animation: pulse-button 2.5s infinite alternate;
+}
+
+.btn-get-tuned:hover {
+  background-color: #ffffff;
+  color: #000000;
+  border-color: #ffffff;
+  transform: translateX(-50%) scale(1.06); /* Preserves centering and scales up */
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.7);
+  animation: none; /* Stops pulsing on hover focusing */
+}
+
+/* Flashy pulsing animation */
+@keyframes pulse-button {
+  0% {
+    box-shadow: 0 0 10px rgba(211, 47, 47, 0.4), inset 0 0 0px rgba(255, 255, 255, 0);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(211, 47, 47, 0.8), inset 0 0 5px rgba(255, 255, 255, 0.1);
+  }
+  100% {
+    box-shadow: 0 0 10px rgba(211, 47, 47, 0.4), inset 0 0 0px rgba(255, 255, 255, 0);
+  }
+}
+
+@media (max-width: 768px) {
+  .video-background-container {
+    margin: -24px; /* Matches mobile padding */
+  }
+  
+  .btn-get-tuned {
+    padding: 14px 32px;
+    font-size: 12px;
+    letter-spacing: 2px;
+    bottom: 32px; /* Pull up slightly higher on small mobile screens */
+    transform: translateX(-50%);
+  }
+  
+  .btn-get-tuned:hover {
+    transform: translateX(-50%) scale(1.04);
+  }
+}

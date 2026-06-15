@@ -1,0 +1,30 @@
+<div class="sidebar-overlay" *ngIf="menuOpen" (click)="toggleMenu()"></div>
+
+<nav class="sidebar" [class.open]="menuOpen">
+  <div class="sidebar-header">
+    <span class="category-header">Navigation</span>
+  </div>
+  
+  <ul class="nav-links">
+    <li>
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="menuOpen && toggleMenu()">
+        <span class="nav-text">Home</span>
+      </a>
+    </li>
+    <li>
+      <a routerLink="/services" routerLinkActive="active" (click)="menuOpen && toggleMenu()">
+        <span class="nav-text">Services</span>
+      </a>
+    </li>
+    <li>
+      <a routerLink="/contact" routerLinkActive="active" (click)="menuOpen && toggleMenu()">
+        <span class="nav-text">Contact</span>
+      </a>
+    </li>
+    <li>
+      <a routerLink="/about" routerLinkActive="active" (click)="menuOpen && toggleMenu()">
+        <span class="nav-text">About</span>
+      </a>
+    </li>
+  </ul>
+</nav>

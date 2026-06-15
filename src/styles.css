@@ -1,0 +1,247 @@
+/* Google Fonts for a professional and clean motorsport look */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap');
+
+:root {
+  /* Colors - Minimalist Dark Theme */
+  --bg-primary: #0a0a0a;
+  --bg-secondary: #111111;
+  --bg-card: #151515;
+  --bg-input: #1a1a1a;
+  
+  --accent-red: #d32f2f;
+  --accent-blue: #1976d2;
+  --accent-gold: #f5c000;
+  
+  --text-primary: #ffffff;
+  --text-secondary: #a0a0a0;
+  --text-muted: #666666;
+  
+  /* Fonts */
+  --font-sans: 'Montserrat', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-display: 'Montserrat', sans-serif;
+  --font-mono: SFMono-Regular, Consolas, Liberation Mono, monospace;
+  
+  /* UI Borders (Boxy, Sharp Motorsport Look) */
+  --border-color: #222222;
+  --border-radius: 0px;
+  --transition-normal: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Base Styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  background-color: var(--bg-primary);
+}
+
+/* Scrollbar Customization */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #222;
+  border-radius: 0px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-red);
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--text-primary);
+}
+
+p {
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+a {
+  color: var(--text-primary);
+  text-decoration: none;
+  transition: var(--transition-normal);
+}
+
+a:hover {
+  color: var(--accent-red);
+}
+
+/* Buttons (Flat, Sharp, Bold) */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 28px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  border-radius: var(--border-radius);
+  border: none;
+  cursor: pointer;
+  transition: var(--transition-normal);
+}
+
+.btn-primary {
+  background-color: var(--text-primary);
+  color: var(--bg-primary);
+  border: 1px solid var(--text-primary);
+}
+
+.btn-primary:hover {
+  background-color: var(--accent-red);
+  border-color: var(--accent-red);
+  color: var(--text-primary);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--text-primary);
+  border: 1px solid var(--text-primary);
+}
+
+.btn-secondary:hover {
+  background-color: var(--text-primary);
+  color: var(--bg-primary);
+}
+
+.btn-accent {
+  background-color: var(--accent-red);
+  color: var(--text-primary);
+  border: 1px solid var(--accent-red);
+}
+
+.btn-accent:hover {
+  background-color: var(--text-primary);
+  color: var(--bg-primary);
+  border-color: var(--text-primary);
+}
+
+/* Minimal Card Styles */
+.card {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  padding: 32px;
+  transition: var(--transition-normal);
+}
+
+.card:hover {
+  border-color: #444444;
+}
+
+/* Minimal Badge/Tag */
+.badge {
+  display: inline-block;
+  padding: 6px 12px;
+  font-family: var(--font-display);
+  font-size: 9px;
+  font-weight: 700;
+  border-radius: var(--border-radius);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.badge-red {
+  background-color: rgba(211, 47, 47, 0.1);
+  color: #ff5252;
+  border: 1px solid rgba(211, 47, 47, 0.2);
+}
+
+.badge-blue {
+  background-color: rgba(25, 118, 210, 0.1);
+  color: #40c4ff;
+  border: 1px solid rgba(25, 118, 210, 0.2);
+}
+
+.badge-gold {
+  background-color: rgba(245, 192, 0, 0.1);
+  color: #ffd740;
+  border: 1px solid rgba(245, 192, 0, 0.2);
+}
+
+/* Form Inputs */
+.form-group {
+  margin-bottom: 24px;
+}
+
+.form-group label {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+  color: var(--text-secondary);
+}
+
+.form-control {
+  width: 100%;
+  background-color: var(--bg-input);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  padding: 14px 18px;
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-size: 13px;
+  transition: var(--transition-normal);
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: var(--text-primary);
+}
+
+textarea.form-control {
+  resize: vertical;
+  min-height: 120px;
+}
+
+/* Hide HTML5 Number Input Spinners/Buttons (Cross-Browser) */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+/* Global Disabled Button Styling (Greyed Out & Deactivated) */
+button:disabled,
+.btn:disabled {
+  background-color: #222222 !important;
+  color: var(--text-muted) !important;
+  border-color: #333333 !important;
+  cursor: not-allowed !important;
+  transform: none !important;
+  box-shadow: none !important;
+}

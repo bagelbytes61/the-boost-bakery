@@ -33,6 +33,7 @@
             <div class="spec-bullet"><strong>VIN:</strong> <code>{{ item.specs.vin | uppercase }}</code></div>
             <div class="spec-bullet" *ngIf="item.specs.mods"><strong>Mods:</strong> {{ item.specs.mods }}</div>
             <div class="spec-bullet" *ngIf="item.specs.notes"><strong>Notes:</strong> {{ item.specs.notes }}</div>
+            <div class="spec-bullet" *ngFor="let addOn of item.addOns"><strong>Add-on:</strong> {{ addOn.name }} (+${{ addOn.price }})</div>
           </div>
 
           <div class="cart-item-price-row">

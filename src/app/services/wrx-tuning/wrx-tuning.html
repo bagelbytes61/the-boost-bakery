@@ -3,7 +3,7 @@
   <!-- Page Header -->
   <div class="page-header">
     <h2>{{ title }}</h2>
-    <p class="subtitle">Complete the form below and then click Add to Cart once you are finished. This is a completely custom tune, hand-tailored for your vehicle's modifications and reliably meeting your desired power goals.</p>
+    <p class="subtitle">Complete the form below and then click Add to Cart once you are finished. This is a completely custom tune, hand-tailored for your vehicle's modifications and reliably meeting your desired power goals. You will need to download <a href="https://motorsportsresearch.org/download.html">Atlas</a> and setup a free account, along with a <a href="https://motorsportsresearch.atlassian.net/wiki/spaces/ATLAS/pages/49610753/Supported+OBDII+Devices">supported OBDII Adapter</a></p>
   </div>
 
   <!-- Main Specifications Form -->
@@ -92,6 +92,40 @@
           ></textarea>
         </div>
 
+        <fieldset class="add-ons-section">
+          <legend>Optional Add-ons</legend>
+          <label class="add-on-option" [class.selected]="uelHeaderEmulationSelected()">
+            <input
+              type="checkbox"
+              name="uelHeaderEmulation"
+              [ngModel]="uelHeaderEmulationSelected()"
+              (ngModelChange)="uelHeaderEmulationSelected.set($event)"
+            />
+            <span class="add-on-content">
+              <span class="add-on-heading">
+                <strong>{{ uelHeaderEmulation.name }}</strong>
+                <span class="add-on-price">+${{ uelHeaderEmulation.price }}</span>
+              </span>
+              <span class="add-on-description">{{ uelHeaderEmulation.description }}</span>
+            </span>
+          </label>
+          <label class="add-on-option" [class.selected]="bigFactoryCamSelected()">
+            <input
+              type="checkbox"
+              name="bigFactoryCam"
+              [ngModel]="bigFactoryCamSelected()"
+              (ngModelChange)="bigFactoryCamSelected.set($event)"
+            />
+            <span class="add-on-content">
+              <span class="add-on-heading">
+                <strong>{{ bigFactoryCam.name }}</strong>
+                <span class="add-on-price">+${{ bigFactoryCam.price }}</span>
+              </span>
+              <span class="add-on-description">{{ bigFactoryCam.description }}</span>
+            </span>
+          </label>
+        </fieldset>
+
         <!-- Checkout Action Footer -->
         <div class="checkout-footer">
           <button 
@@ -99,7 +133,7 @@
             class="btn btn-primary btn-checkout" 
             [disabled]="isSubmitting() || !vin() || vin().length !== 17 || mileage() === null || (mileage() ?? 0) < 0 || !mods() || mods().trim().length === 0"
           >
-            <span *ngIf="!isSubmitting()">Add to cart</span>
+            <span *ngIf="!isSubmitting()">Add to cart — ${{ totalPrice() }}</span>
             <span *ngIf="isSubmitting()" class="loader-dots">Adding to cart...</span>
           </button>
         </div>

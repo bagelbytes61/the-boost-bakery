@@ -17,29 +17,35 @@
     <div class="success-details">
       <div class="success-item-row">
         <strong>Transaction ID:</strong>
-        <code>{{ transactionDetails().id }}</code>
+        <code>{{ transactionDetails()?.id }}</code>
       </div>
       <div class="success-item-row">
         <strong>Payer:</strong>
-        <span>{{ transactionDetails().payerName }}</span>
+        <span>{{ transactionDetails()?.payerName }}</span>
       </div>
       <div class="success-item-row">
         <strong>Email:</strong>
-        <span>{{ transactionDetails().email }}</span>
+        <span>{{ transactionDetails()?.email }}</span>
       </div>
       <div class="success-item-row">
         <strong>Captured:</strong>
-        <span class="price-val">${{ transactionDetails().amount }} USD</span>
+        <span class="price-val">${{ transactionDetails()?.amount }} USD</span>
       </div>
       <div class="success-item-row">
         <strong>Status:</strong>
-        <span class="badge badge-gold">{{ transactionDetails().status }}</span>
+        <span class="badge badge-gold">{{ transactionDetails()?.status }}</span>
       </div>
     </div>
 
     <div class="receipt-hint-card card">
       <h4>What Happens Next?</h4>
-      <p>We are registering your VIN inside our calibration directory. A baseline map with exact flashing instructions has been automatically compiled and dispatched to your email (<code>{{ transactionDetails().email }}</code>).</p>
+      <p>We are registering your VIN in our calibration directory. Please allow 24–48 hours for your basemap and flashing instructions to be delivered to your email (<code>{{ transactionDetails()?.email }}</code>).</p>
+      <p class="notification-status" *ngIf="notificationStatus() === 'sending'">We are securely registering your tune details now…</p>
+      <p class="notification-status notification-success" *ngIf="notificationStatus() === 'sent'">Your tune details have been received successfully.</p>
+      <div class="notification-error" *ngIf="notificationStatus() === 'failed'">
+        <p>Your payment was approved, but we could not register your tune details. Please retry so your order is not delayed.</p>
+        <button type="button" class="btn btn-secondary" (click)="retryOrderNotification()">Retry Order Submission</button>
+      </div>
     </div>
 
     <div class="success-actions">
@@ -82,6 +88,10 @@
               <div class="spec-row" *ngIf="item.specs.notes">
                 <span>Customer Notes:</span>
                 <span class="text-right">{{ item.specs.notes }}</span>
+              </div>
+              <div class="spec-row" *ngFor="let addOn of item.addOns">
+                <span>Add-on:</span>
+                <span class="text-right">{{ addOn.name }} (+${{ addOn.price }})</span>
               </div>
             </div>
           </li>

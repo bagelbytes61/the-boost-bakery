@@ -1,9 +1,17 @@
 import { Injectable, signal, computed } from '@angular/core';
 
+export interface CartAddOn {
+  id: string;
+  name: string;
+  price: number;
+  description: string;
+}
+
 export interface CartItem {
   id: string;
   name: string;
   price: number;
+  addOns?: CartAddOn[];
   specs: {
     modelYear: string;
     vin: string;

@@ -39,6 +39,8 @@ describe('WrxTuningComponent', () => {
       component.vin.set('12345678901234567');
       component.mileage.set(45000);
       component.mods.set('Cold Air Intake, Catback Exhaust');
+      component.uelHeaderEmulationSelected.set(true);
+      component.bigFactoryCamSelected.set(true);
 
       component.submitOrder();
       expect(component.isSubmitting()).toBeTruthy();
@@ -48,6 +50,11 @@ describe('WrxTuningComponent', () => {
 
       expect(component.isSubmitting()).toBeFalsy();
       expect(component.orderSubmitted()).toBeTruthy();
+      expect(component.cartService.items()[0].price).toBe(840);
+      expect(component.cartService.items()[0].addOns?.map((addOn) => addOn.name)).toEqual([
+        'Unequal Length Header Emulation (UELHE)',
+        'Big Factory Cam (BFC)'
+      ]);
     } finally {
       vi.useRealTimers();
     }
@@ -68,6 +75,8 @@ describe('WrxTuningComponent', () => {
     component.mileage.set(45000);
     component.mods.set('Intake');
     component.notes.set('93 octane');
+    component.uelHeaderEmulationSelected.set(true);
+    component.bigFactoryCamSelected.set(true);
     component.orderSubmitted.set(true);
 
     component.resetForm();
@@ -76,6 +85,8 @@ describe('WrxTuningComponent', () => {
     expect(component.mileage()).toBeNull();
     expect(component.mods()).toBe('');
     expect(component.notes()).toBe('');
+    expect(component.uelHeaderEmulationSelected()).toBeFalsy();
+    expect(component.bigFactoryCamSelected()).toBeFalsy();
     expect(component.orderSubmitted()).toBeFalsy();
   });
 });

@@ -33,6 +33,7 @@
               "entry": "src/server.ts",
               "experimentalPlatform": "neutral"
             },
+            "externalDependencies": ["cloudflare:email"],
             "outputPath": "dist"
           },
           "configurations": {

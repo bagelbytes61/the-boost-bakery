@@ -7,7 +7,7 @@
 		"build": "ng build",
 		"watch": "ng build --watch --configuration development",
 		"test": "ng test",
-		"serve:ssr:the-boost-bakery": "node dist/the-boost-bakery/server/server.mjs",
+		"serve:ssr:the-boost-bakery": "node dist/server/server.mjs",
 		"preview": "npm run build && wrangler dev",
 		"deploy": "npm run build && wrangler deploy",
 		"cf-typegen": "wrangler types"

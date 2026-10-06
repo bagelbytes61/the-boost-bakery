@@ -1,9 +1,7 @@
-import { Component, ElementRef, ViewChild, inject, signal, AfterViewInit, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, ElementRef, ViewChild, inject, signal, AfterViewInit, OnInit, PLATFORM_ID } from '@angular/core';
+import { CommonModule, DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { RouterLink, Router } from '@angular/router';
 import { CartItem, CartService } from '../services/cart.service';
-
-declare const paypal: any;
 
 interface TransactionDetails {
   id: string;
@@ -29,6 +27,8 @@ type NotificationStatus = 'idle' | 'sending' | 'sent' | 'failed';
 export class CheckoutComponent implements OnInit, AfterViewInit {
   cartService = inject(CartService);
   router = inject(Router);
+  private readonly document = inject(DOCUMENT);
+  private readonly platformId = inject(PLATFORM_ID);
 
   paypalButtonsRendered = false;
   @ViewChild('paypalContainer') paypalContainer?: ElementRef;
@@ -46,11 +46,30 @@ export class CheckoutComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    if (this.cartService.itemCount() > 0 && !this.paymentSuccess()) {
-      setTimeout(() => {
-        this.renderPayPalButtons();
+    if (isPlatformBrowser(this.platformId) && this.cartService.itemCount() > 0 && !this.paymentSuccess()) {
+      setTimeout(async () => {
+        try {
+          await this.loadPayPalSdk();
+          this.renderPayPalButtons();
+        } catch (error) {
+          console.error('Failed to load PayPal SDK:', error);
+        }
       }, 150);
     }
+  }
+
+  private loadPayPalSdk(): Promise<void> {
+    if ((window as any).paypal) return Promise.resolve();
+
+    return new Promise((resolve, reject) => {
+      const script = this.document.createElement('script');
+      script.src = 'https://www.paypal.com/sdk/js?client-id=AR3oocP0xatfjmrzKmVy-QzksW42_-iaAKlKMbSyvjcpvZPjzAYY3S9MWHYsTtyI4PRMxExZVAH42L-l&currency=USD&intent=capture';
+      script.async = true;
+      script.setAttribute('data-paypal-sdk', 'true');
+      script.addEventListener('load', () => resolve(), { once: true });
+      script.addEventListener('error', () => reject(new Error('PayPal SDK failed to load.')), { once: true });
+      this.document.head.appendChild(script);
+    });
   }
 
   renderPayPalButtons() {
@@ -60,7 +79,7 @@ export class CheckoutComponent implements OnInit, AfterViewInit {
     this.paypalContainer.nativeElement.innerHTML = '';
 
     try {
-      paypal.Buttons({
+      (window as any).paypal.Buttons({
         style: {
           layout: 'vertical',
           color:  'gold',

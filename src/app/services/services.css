@@ -1,97 +1,26 @@
-.services-container {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 16px 0;
-  animation: fadeIn 0.4s ease-out;
-}
-
-/* Page Header */
-.page-header {
-  margin-bottom: 40px;
-  border-left: 4px solid var(--accent-red);
-  padding-left: 20px;
-}
-
-.page-header h2 {
-  font-size: 32px;
-  color: #fff;
-  margin-top: 8px;
-  margin-bottom: 12px;
-}
-
-.subtitle {
-  color: var(--text-secondary);
-  font-size: 16px;
-  max-width: 800px;
-}
-
-/* Services Grid Layout */
-.services-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  max-width: 600px; /* Narrow centered sizing for our single catalog card */
-  margin: 0 auto;
-  gap: 32px;
-}
-
-/* Catalog Card styling */
-.service-catalog-card {
-  padding: 40px;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  border: 1px solid var(--border-color);
-  background-color: var(--bg-secondary);
-}
-
-.service-catalog-card:hover {
-  border-color: var(--text-secondary);
-}
-
-.catalog-card-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.catalog-price {
-  font-family: var(--font-display);
-  font-size: 18px;
-  font-weight: 800;
-  color: var(--text-primary);
-}
-
-.catalog-card-title {
-  font-size: 18px;
-  color: #fff;
-  margin-top: 4px;
-}
-
-.catalog-card-desc {
-  font-size: 13px;
-  line-height: 1.7;
-  color: var(--text-secondary);
-}
-
-.catalog-card-action {
-  margin-top: 12px;
-}
-
-.catalog-btn {
-  width: 100%;
-  padding: 14px;
-  font-size: 11px;
-  pointer-events: none; /* Let the clickable card bubble handles the navigation */
-}
-
-/* Animations */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
+.services-container { max-width: 1000px; margin: 0 auto; padding: 16px 0; animation: fadeIn 0.4s ease-out; }
+.page-header { margin-bottom: 48px; border-left: 4px solid var(--accent-red); padding-left: 20px; }
+.page-kicker { color: #f36a63; font-family: var(--font-display); font-size: 9px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; }
+.page-header h1 { font-size: 32px; color: #fff; margin-top: 8px; margin-bottom: 12px; }
+.subtitle { color: var(--text-secondary); font-size: 15px; line-height: 1.7; max-width: 800px; }
+.services-grid { display: grid; grid-template-columns: repeat(2, 1fr); max-width: 900px; margin: 0 auto; gap: 24px; }
+.service-catalog-card { padding: 36px; display: flex; flex-direction: column; gap: 20px; color: inherit; border: 1px solid var(--border-color); background-color: var(--bg-secondary); }
+.service-catalog-card:hover { border-color: var(--text-secondary); color: inherit; transform: translateY(-3px); }
+.catalog-card-header { display: flex; justify-content: space-between; align-items: center; gap: 14px; }
+.catalog-price { font-family: var(--font-display); font-size: 18px; font-weight: 800; color: var(--text-primary); }
+.catalog-card-title { font-size: 17px; line-height: 1.4; color: #fff; margin-top: 4px; }
+.catalog-card-desc { flex: 1; font-size: 13px; line-height: 1.7; color: var(--text-secondary); }
+.catalog-btn { width: 100%; padding: 14px; font-size: 11px; pointer-events: none; }
+.service-notes { display: grid; grid-template-columns: .7fr 1.3fr; gap: 60px; margin-top: 96px; padding-top: 48px; border-top: 1px solid var(--border-color); }
+.service-notes h2 { margin-top: 12px; font-size: 28px; }
+.requirements-grid { display: grid; gap: 1px; background: var(--border-color); }
+.requirements-grid p { display: grid; grid-template-columns: 145px 1fr; gap: 18px; padding: 22px; background: var(--bg-secondary); font-size: 12px; }
+.requirements-grid strong { color: #fff; text-transform: uppercase; font-size: 10px; letter-spacing: 1px; }
+.requirements-grid span { line-height: 1.6; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 @media (max-width: 768px) {
-  .service-catalog-card {
-    padding: 24px;
-  }
+  .services-grid, .service-notes { grid-template-columns: 1fr; }
+  .service-notes { gap: 28px; margin-top: 70px; }
+  .requirements-grid p { grid-template-columns: 1fr; gap: 8px; }
+  .service-catalog-card { padding: 24px; }
 }

@@ -1,13 +1,137 @@
-<div class="video-background-container">
-  <!-- Ambient, silent looping background video -->
-  <video #bgVideo autoplay loop muted playsinline class="background-video">
+<section class="hero" aria-labelledby="hero-title">
+  <video
+    #bgVideo
+    autoplay
+    loop
+    muted
+    playsinline
+    preload="metadata"
+    poster="/assets/boostbakery.png"
+    class="hero-video"
+    aria-hidden="true"
+  >
     <source src="/assets/boostbakerylanding.mp4" type="video/mp4">
-    Your browser does not support the video tag.
   </video>
-  <div class="video-overlay" (click)="toggleVideo()"></div>
+  <button class="video-toggle" type="button" (click)="toggleVideo()" aria-label="Play or pause background video">
+    <span aria-hidden="true">▶ / ‖</span>
+  </button>
+  <div class="hero-scrim"></div>
+
+  <div class="hero-content">
+    <p class="eyebrow">Remote ECU calibration <span></span> VA + VB WRX</p>
+    <h1 id="hero-title">Custom Subaru WRX tuning.<br><em>Baked for your build.</em></h1>
+    <p class="hero-copy">
+      Purpose-built calibrations for 2015–2026 Subaru WRX platforms, including
+      FA24-swapped VA builds. Tuned around your hardware, fuel, and goals—not a generic map.
+    </p>
+    <div class="hero-actions">
+      <a routerLink="/services/wrx-tuning" class="btn btn-accent">Build your tune</a>
+      <a routerLink="/services" class="text-link">Explore services <span aria-hidden="true">→</span></a>
+    </div>
+  </div>
+
+  <a class="scroll-cue" href="#tuning" aria-label="Continue to tuning information">
+    <span>Scroll to discover</span>
+    <span aria-hidden="true">↓</span>
+  </a>
+</section>
+
+<div class="signal-strip" aria-label="Service highlights">
+  <div><strong>2015–2026</strong><span>WRX support</span></div>
+  <div><strong>VA + VB</strong><span>FA20 / FA24</span></div>
+  <div><strong>Remote</strong><span>Custom calibration</span></div>
 </div>
 
-<!-- Sticky Bottom Center Floating CTA -->
-<button routerLink="/services" class="btn btn-accent btn-get-tuned">
-  Get Tuned
-</button>
+<section id="tuning" class="content-section intro-section">
+  <div class="section-heading">
+    <p class="section-index">01 / The recipe</p>
+    <h2>Your WRX isn’t off the shelf.<br>Your tune shouldn’t be either.</h2>
+  </div>
+  <div class="intro-copy">
+    <p>
+      The Boost Bakery provides custom remote ECU tuning for 2015–2026 Subaru WRX models.
+      Every calibration starts with your exact model year, modifications, mileage, fuel, and
+      performance goals.
+    </p>
+    <p>
+      Using Atlas and a supported OBDII adapter, you can flash and datalog from home while your
+      calibration is refined for responsive power, predictable drivability, and your specific setup.
+    </p>
+  </div>
+</section>
+
+<section class="content-section services-section" aria-labelledby="services-heading">
+  <div class="section-heading compact-heading">
+    <p class="section-index">02 / Services</p>
+    <h2 id="services-heading">Choose your flavor</h2>
+  </div>
+
+  <div class="service-grid">
+    <a routerLink="/services/wrx-tuning" class="service-tile featured-tile">
+      <div class="tile-topline"><span>Full calibration</span><span>From $350</span></div>
+      <div>
+        <p class="tile-platform">VA / VB / FA24-swapped VA</p>
+        <h3>Custom WRX Tune</h3>
+        <p>A complete calibration tailored to your installed hardware and desired power delivery.</p>
+      </div>
+      <span class="tile-link">Configure tune <span aria-hidden="true">↗</span></span>
+    </a>
+
+    <a routerLink="/services/burble-tune" class="service-tile">
+      <div class="tile-topline"><span>Stock intake + J-pipe</span><span>$75</span></div>
+      <div>
+        <p class="tile-platform">Optional character</p>
+        <h3>Burble / Pop Tune</h3>
+        <p>A standalone sound-focused calibration for compatible stock-hardware WRX setups.</p>
+      </div>
+      <span class="tile-link">View details <span aria-hidden="true">↗</span></span>
+    </a>
+  </div>
+</section>
+
+<section class="content-section process-section" aria-labelledby="process-heading">
+  <div class="section-heading compact-heading">
+    <p class="section-index">03 / Process</p>
+    <h2 id="process-heading">From build sheet to basemap</h2>
+  </div>
+  <ol class="process-grid">
+    <li><span>01</span><h3>Configure</h3><p>Share your VIN, mileage, modifications, fuel, and goals.</p></li>
+    <li><span>02</span><h3>Connect</h3><p>Set up Atlas and a supported OBDII adapter for flashing and logs.</p></li>
+    <li><span>03</span><h3>Calibrate</h3><p>Receive a custom basemap and refinement support for your WRX.</p></li>
+  </ol>
+</section>
+
+<section class="content-section expertise-section">
+  <div class="expertise-card">
+    <p class="section-index">Built by an engineer. Driven by an enthusiast.</p>
+    <h2>Calibration with context.</h2>
+    <p>
+      The Boost Bakery is run by Jeremy, an embedded software engineer with experience developing
+      drive-by-wire systems for heavy-duty autonomous vehicles and a hands-on focus on Subaru ECU
+      reverse engineering.
+    </p>
+    <a routerLink="/about" class="text-link">Meet your tuner <span aria-hidden="true">→</span></a>
+  </div>
+</section>
+
+<section class="content-section faq-section" aria-labelledby="faq-heading">
+  <div class="section-heading compact-heading">
+    <p class="section-index">04 / Common questions</p>
+    <h2 id="faq-heading">Before you order</h2>
+  </div>
+  <div class="faq-list">
+    <details>
+      <summary>Which Subaru WRX model years are supported?</summary>
+      <p>Custom tuning is available for 2015–2026 WRX models, covering VA and VB platforms as well as supported FA24-swapped VA builds.</p>
+    </details>
+    <details>
+      <summary>What hardware and software do I need?</summary>
+      <p>You’ll need a free Atlas account and a supported OBDII adapter. The service page links to the current Atlas download and supported-device list.</p>
+    </details>
+    <details>
+      <summary>Is this an off-the-shelf map?</summary>
+      <p>No. Your calibration is prepared around the vehicle information and modifications you provide when ordering.</p>
+    </details>
+  </div>
+  <a routerLink="/contact" class="btn btn-secondary faq-cta">Ask a tuning question</a>
+</section>

@@ -94,6 +94,21 @@
 
         <fieldset class="add-ons-section">
           <legend>Optional Add-ons</legend>
+          <label class="add-on-option" [class.selected]="fa24SwapSelected()">
+            <input
+              type="checkbox"
+              name="fa24Swap"
+              [ngModel]="fa24SwapSelected()"
+              (ngModelChange)="fa24SwapSelected.set($event)"
+            />
+            <span class="add-on-content">
+              <span class="add-on-heading">
+                <strong>{{ fa24Swap.name }}</strong>
+                <span class="add-on-price">+${{ fa24Swap.price }}</span>
+              </span>
+              <span class="add-on-description">{{ fa24Swap.description }}</span>
+            </span>
+          </label>
           <label class="add-on-option" [class.selected]="uelHeaderEmulationSelected()">
             <input
               type="checkbox"

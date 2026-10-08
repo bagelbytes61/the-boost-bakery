@@ -123,7 +123,7 @@ export class SeoTitleStrategy extends TitleStrategy {
         url: `${siteUrl}${path}`,
         offers: {
           '@type': 'Offer',
-          price: isFullTune ? '350.00' : '75.00',
+          price: isFullTune ? '350.00' : '100.00',
           priceCurrency: 'USD',
           availability: 'https://schema.org/InStock',
           url: `${siteUrl}${path}`

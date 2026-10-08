@@ -14,7 +14,7 @@ export class BurbleTuneComponent {
   cartService = inject(CartService);
 
   title = 'Burble/Pop Tune';
-  price = 75;
+  price = 100;
 
   modelYear = signal<string>('2022');
   vin = signal<string>('');

@@ -14,6 +14,12 @@ export class WrxTuningComponent {
 
   title = 'Subaru WRX (2015-2026) Tuning';
   price = 350;
+  readonly fa24Swap = {
+    id: 'fa24-swap',
+    name: 'FA24 Swap',
+    price: 75,
+    description: 'Custom calibration for supported FA24-swapped VA WRX builds.'
+  };
   readonly uelHeaderEmulation = {
     id: 'uel-header-emulation',
     name: 'Unequal Length Header Emulation (UELHE)',
@@ -32,11 +38,13 @@ export class WrxTuningComponent {
   mileage = signal<number | null>(null);
   mods = signal<string>('');
   notes = signal<string>('');
+  fa24SwapSelected = signal<boolean>(false);
   uelHeaderEmulationSelected = signal<boolean>(false);
   bigFactoryCamSelected = signal<boolean>(false);
   totalPrice = computed(
     () =>
       this.price +
+      (this.fa24SwapSelected() ? this.fa24Swap.price : 0) +
       (this.uelHeaderEmulationSelected() ? this.uelHeaderEmulation.price : 0) +
       (this.bigFactoryCamSelected() ? this.bigFactoryCam.price : 0)
   );
@@ -50,6 +58,7 @@ export class WrxTuningComponent {
 
     setTimeout(() => {
       const addOns = [
+        ...(this.fa24SwapSelected() ? [this.fa24Swap] : []),
         ...(this.uelHeaderEmulationSelected() ? [this.uelHeaderEmulation] : []),
         ...(this.bigFactoryCamSelected() ? [this.bigFactoryCam] : [])
       ];
@@ -76,6 +85,7 @@ export class WrxTuningComponent {
       this.mileage.set(null);
       this.mods.set('');
       this.notes.set('');
+      this.fa24SwapSelected.set(false);
       this.uelHeaderEmulationSelected.set(false);
       this.bigFactoryCamSelected.set(false);
     }, 1000);
@@ -87,6 +97,7 @@ export class WrxTuningComponent {
     this.mileage.set(null);
     this.mods.set('');
     this.notes.set('');
+    this.fa24SwapSelected.set(false);
     this.uelHeaderEmulationSelected.set(false);
     this.bigFactoryCamSelected.set(false);
     this.orderSubmitted.set(false);

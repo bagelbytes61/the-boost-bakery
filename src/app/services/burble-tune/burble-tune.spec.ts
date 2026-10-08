@@ -25,7 +25,7 @@ describe('BurbleTuneComponent', () => {
 
   it('should define correct title and price', () => {
     expect(component.title).toBe('Burble/Pop Tune');
-    expect(component.price).toBe(75);
+    expect(component.price).toBe(100);
   });
 
   it('should default to 2022 model year', () => {
@@ -51,6 +51,7 @@ describe('BurbleTuneComponent', () => {
 
       expect(component.isSubmitting()).toBeFalsy();
       expect(component.orderSubmitted()).toBeTruthy();
+      expect(component.cartService.items()[0].price).toBe(100);
     } finally {
       vi.useRealTimers();
     }

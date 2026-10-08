@@ -29,6 +29,23 @@ describe('WrxTuningComponent', () => {
     expect(component.modelYear()).toBe('2022');
   });
 
+  it('should add $75 when the FA24 swap checkbox is selected', async () => {
+    const checkbox = fixture.nativeElement.querySelector('input[name="fa24Swap"]') as HTMLInputElement;
+    expect(checkbox.checked).toBe(false);
+    expect(component.totalPrice()).toBe(350);
+
+    checkbox.click();
+    await fixture.whenStable();
+
+    expect(component.fa24SwapSelected()).toBe(true);
+    expect(component.totalPrice()).toBe(425);
+    expect(fixture.nativeElement.querySelector('.btn-checkout').textContent).toContain('$425');
+
+    checkbox.click();
+    await fixture.whenStable();
+    expect(component.totalPrice()).toBe(350);
+  });
+
   it('should process calibration order asynchronously with valid inputs', () => {
     vi.useFakeTimers();
     try {
@@ -39,6 +56,7 @@ describe('WrxTuningComponent', () => {
       component.vin.set('12345678901234567');
       component.mileage.set(45000);
       component.mods.set('Cold Air Intake, Catback Exhaust');
+      component.fa24SwapSelected.set(true);
       component.uelHeaderEmulationSelected.set(true);
       component.bigFactoryCamSelected.set(true);
 
@@ -50,11 +68,15 @@ describe('WrxTuningComponent', () => {
 
       expect(component.isSubmitting()).toBeFalsy();
       expect(component.orderSubmitted()).toBeTruthy();
-      expect(component.cartService.items()[0].price).toBe(840);
+      expect(component.cartService.items()[0].price).toBe(915);
       expect(component.cartService.items()[0].addOns?.map((addOn) => addOn.name)).toEqual([
+        'FA24 Swap',
         'Unequal Length Header Emulation (UELHE)',
         'Big Factory Cam (BFC)'
       ]);
+      expect(component.cartService.items()[0].addOns?.[0].price).toBe(75);
+      expect(component.fa24SwapSelected()).toBeFalsy();
+      expect(component.totalPrice()).toBe(350);
     } finally {
       vi.useRealTimers();
     }
@@ -75,6 +97,7 @@ describe('WrxTuningComponent', () => {
     component.mileage.set(45000);
     component.mods.set('Intake');
     component.notes.set('93 octane');
+    component.fa24SwapSelected.set(true);
     component.uelHeaderEmulationSelected.set(true);
     component.bigFactoryCamSelected.set(true);
     component.orderSubmitted.set(true);
@@ -85,6 +108,7 @@ describe('WrxTuningComponent', () => {
     expect(component.mileage()).toBeNull();
     expect(component.mods()).toBe('');
     expect(component.notes()).toBe('');
+    expect(component.fa24SwapSelected()).toBeFalsy();
     expect(component.uelHeaderEmulationSelected()).toBeFalsy();
     expect(component.bigFactoryCamSelected()).toBeFalsy();
     expect(component.orderSubmitted()).toBeFalsy();
